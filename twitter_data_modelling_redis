@@ -1,0 +1,15 @@
+1. Globally shared next_user_id which can be atomically incremented
+2. Globally shared next_user_id which can be atomically incremented
+3. Hash "userid to user's data": 
+		HSET user:$userid username $username password $encrypted_password
+4. Hash "username to userid lookup"
+		HSET users $username $userid
+4. User-followers and followes(sorted set)
+	followers:$userid => sorted set(timestamp as element score)
+	following:$userid => sorted set(timestamp as element score)
+5. user timeline(list of posts)			
+	posts:$userid user_id $owner_id time $time body "I'm having fun with Retwis"
+6. Auth
+	within user hash(user:$userid) - random unguessable string to set as the auth secret/cookie of an authenticated user
+7. HASH: map authentication secrets to user IDs
+	auths $userhash $userid
