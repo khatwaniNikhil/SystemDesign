@@ -14,8 +14,9 @@
 5. avoid undersell & over sell
 6. Observability
 7. manage ddos: unfair means will be used due to competitiveness and limited inventory on sale
-8. once inv. has been exhausted - avoid wasting compute cycles in processing pending http requests
-9. Inv. Deduction Throughput of a Single Product upto 1k per sec
+8. once inv. has been exhausted - avoid wasting compute cycles in processing pending http requests. 
+    1. If there are 100 iPhones for flash sales and 1 million customers participate in the flash sales, the minimum granularity for the database is a row lock. When one customer is updating this record, the other 999,999 customers are waiting. But ideally, the database should only process the 100 lucky winners in the flash sales.
+10. Inv. Deduction Throughput of a Single Product upto 1k per sec
 
 # Scale
 1. Around 110 orders per sec - 10 million orders in day
