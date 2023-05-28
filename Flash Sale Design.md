@@ -6,19 +6,21 @@
 5. https://www.youtube.com/watch?v=x4CQlmXU06s
 6. https://www.youtube.com/watch?v=x4CQlmXU06s
 
-# Requirements
+# Functional 
+1. avoid undersell: payment not completed by user, giving chance to other users
+2. avoid over sell 
+3. identifying malicious users
+
+# Non Functional
 1. handle high concurrency/load
-2. high availability: user does not see failure
-3. low latency
-4. scalable
-5. avoid undersell & over sell
+    1. Inv. Deduction Throughput of a Single Product upto 1k per sec
+3. high availability: user does not see failure
+4. low latency
+5. scalable
 6. Observability
 7. manage ddos: unfair means will be used due to competitiveness and limited inventory on sale
-8. once inv. has been exhausted - avoid wasting compute cycles in processing pending http requests. 
-    1. If there are 100 iPhones for flash sales and 1 million customers participate in the flash sales, the minimum granularity for the database is a row lock. When one customer is updating this record, the other 999,999 customers are waiting. But ideally, the database should only process the 100 lucky winners in the flash sales.
-10. Inv. Deduction Throughput of a Single Product upto 1k per sec
 
-# Scale
+# Scale Assumptions
 1. Around 110 orders per sec - 10 million orders in day
 2. Based on flipkart past sale no's, 600 million requests during flash sale, on avg. 6 million req per day on non flash sale service
 
@@ -30,20 +32,12 @@
    3. limit max connections to webserver
    4. close slow connections
 
-## UI
-1. load balancer with auto scale UI service
-2. CDN hosting of static assets
-3. avoided repeated click by user: disable submit btn once clicked
-4. avoid unnecessary multiple api calls
-    2. Lodash-debounce: for example - time threshold based wait for user typing to complete before next api hit to backend
-    3. Axios HTTP Request Cancellation: for example - video streaming user has jumped to future time, just immediate chunk is no longer to be fetched
-
 ## Cache 
 1. Cache api responses which r mostly static like item description
 
 ## Server
 1. Async request processing at server level via request queing to MQ etc.
-2. auto scaling of different services: product service, review&ratings, order service
+2. scaling of stateless api server
  
 ## Database
 1. row level lock for inventory update: lot of contention in case of million req/sec
@@ -63,3 +57,12 @@
 3. read replicas versus cache
      1. read replica will be size constrained as each read replica will store complete data
      2. cache will be faster and size can be tuned/managed via TTL 
+
+## UI
+1. load balancer with auto scale UI service
+2. CDN hosting of static assets
+3. avoided repeated click by user: disable submit btn once clicked
+4. avoid unnecessary multiple api calls
+    1. Lodash-debounce: for example - time threshold based wait for user typing to complete before next api hit to backend
+    2. Axios HTTP Request Cancellation: for example - video streaming user has jumped to future time, just immediate chunk is no longer to be fetched
+
