@@ -24,26 +24,24 @@
 # System Design
 ## Nginx 
 1. prevents ddos
-  1. blacklisting & whitleisting ip support
-  2. per ip limit no. of reqs in a min. etc.
-  3. limit max connections to webserver
-  4. close slow connections
-  5. blacklisting & whitleisting ip support
+   1. blacklisting & whitleisting ip support
+   2. per ip limit no. of reqs in a min. etc.
+   3. limit max connections to webserver
+   4. close slow connections
 
 ## UI
 1. load balancer with auto scale UI service
 2. CDN hosting of static assets
 3. avoided repeated click by user: disable submit btn once clicked
 4. avoid unnecessary multiple api calls
-    1. blacklisting & whitleisting ip support
-    2. Lodash-debounce: for example - wait for user typing to complete before api hit to backend
+    2. Lodash-debounce: for example - time threshold based wait for user typing to complete before next api hit to backend
     3. Axios HTTP Request Cancellation: for example - video streaming user has jumped to future time, just immediate chunk is no longer to be fetched
 
 ## Cache 
 1. Cache api responses which r mostly static like item description
 
 ## Server
-1. Async request processing at server level
+1. Async request processing at server level via request queing to MQ etc.
 2. auto scaling of different services: product service, review&ratings, order service
  
 ## Database
@@ -59,7 +57,7 @@
     6. advisory lock reduces cpu utilisation drastically
 
 ## Architecture
-1. auto scaling cluster of UI service and product service
+1. overprovision infra dedicated to sales
 2. store data in binary format like avro or protobuf for memory gains
 3. read replicas versus cache
      1. read replica will be size constrained as each read replica will store complete data
