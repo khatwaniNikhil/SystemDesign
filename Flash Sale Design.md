@@ -16,9 +16,10 @@ At the most basic level, they r limited availability sales in qty or time
 
     ![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/ux_backpressure.png)
     
-2. avoid undersell: user dropped during the checkout process - payment failure, network issue etc.
-3. avoid over sell - race conditions around deduction of inventory with highly concurrent user requests.
-4. identifying malicious users
+2. user should be throttled fairly - some user waiting endlessly versus some user get lucky nd placed order as soon as they came
+3. avoid undersell: user dropped during the checkout process - payment failure, network issue etc.
+4. avoid over sell - race conditions around deduction of inventory with highly concurrent user requests.
+5. identifying malicious users
 
 # Non Functional
 1. handle high write load - checkout driven
@@ -38,14 +39,30 @@ At the most basic level, they r limited availability sales in qty or time
 # System Design
 ## Nginx 
 1. write flows related optimisation - query tuning etc.
-2. API throttle using leaky bucket algo
-3. prevents ddos
+2. throttle using leaky bucket algo
+    1. once user's checkout is throttled - he is shown throttle page(cached by LB)
+    2. as per the UX requirement(refer functional requirement section) - throttled page javascript will keep polling the LB to see if there is enough capacity 
+    3. once LB gives go ahead to checkout, we places securely signed cookie in user session to avoid rethrolling the same user and let him complete checkout
+
+        ![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/checkout_throttle_handling.png)
+
+4. **stateless fair throttling** of users **managing any state around request originate time which can later be spof**
+   1. define lag delimeter - time elapsed since start of sale
+       1. during non sale hours - lag delimeter is current time(all requests are high priority and no one is throttled)
+       2. during flash sale - bucket fills quickly, lb will notice this and fine tune lag delimeter in order to reach goal of 16 (size of leaky bucket) requests hitting the bucket, if more than 16 requests are reaching bucket then all will be throttled
+   3. basis before/after lag delimeter - categorize requests into high and low  priority
+   4. low priority immediately throttled
+   5. high priority go through leaky bucket 
+   6. leaky bucket is per load balancer
+   7. capacity of each leak bucket = total capacity/no. of load balancers
+   
+6. prevents ddos
    1. blacklisting & whitleisting ip support
    2. per ip limit no. of reqs in a min. etc.
    3. limit max connections to webserver
    4. close slow connections
-4. event loop based architecture - scalable to high load of http requests
-5. customised nginx - openresty as application load balancer
+7. event loop based architecture - scalable to high load of http requests
+8. customised nginx - openresty as application load balancer
     1. shopify used openresty - written on top of nginx - adding luaJIT to write lua scripts to modify the flow of requests 
         1. shopify leveraged the same to create http router to enable multi dc
         2. muti dc caching framework
