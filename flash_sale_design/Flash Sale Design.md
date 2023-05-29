@@ -19,7 +19,8 @@ At the most basic level, they r limited availability sales in qty or time
 2. First come first served and fair throttling - some user waiting endlessly versus some user get lucky nd placed order as soon as they came
 3. avoid undersell: user dropped during the checkout process - payment failure, network issue etc.
 4. avoid over sell - race conditions around deduction of inventory with highly concurrent user requests.
-5. identifying malicious users
+5. identifying malicious users & bots - tendency to purchase and later sale at higher price in secondary market
+6. Avoid mutiple charges - leading to customer complaints to credit cards and merchant has to bear dispute fees
 
 # Non Functional
 1. handle high read load - storefront
@@ -83,7 +84,7 @@ At the most basic level, they r limited availability sales in qty or time
         1. on new user signup - sending email can be done asyncronously
         2. image processing on upload to website - 
         3 server response is somewhat the image has been uploaded successfully, it will appear on the website later if things go as planned
-4. scaling of stateless api server
+4. idempotent key based api design to avoid duplicate charges
  
 ## Database
 1. row level lock for inventory update: lot of contention in case of million req/sec
