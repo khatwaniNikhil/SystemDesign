@@ -16,7 +16,7 @@ At the most basic level, they r limited availability sales in qty or time
 
     ![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/ux_backpressure.png)
     
-2. user should be throttled fairly - some user waiting endlessly versus some user get lucky nd placed order as soon as they came
+2. First come first served and fair throttling - some user waiting endlessly versus some user get lucky nd placed order as soon as they came
 3. avoid undersell: user dropped during the checkout process - payment failure, network issue etc.
 4. avoid over sell - race conditions around deduction of inventory with highly concurrent user requests.
 5. identifying malicious users
@@ -38,8 +38,7 @@ At the most basic level, they r limited availability sales in qty or time
 
 # System Design
 ## Nginx 
-1. write flows related optimisation - query tuning etc.
-2. throttle using leaky bucket algo
+1. throttle using leaky bucket algo
     1. once user's checkout is throttled - he is shown throttle page(cached by LB)
     2. as per the UX requirement(refer functional requirement section) - throttled page javascript will keep polling the LB to see if there is enough capacity 
     3. once LB gives go ahead to checkout, we places securely signed cookie in user session to avoid rethrolling the same user and let him complete checkout
