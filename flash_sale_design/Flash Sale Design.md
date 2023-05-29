@@ -22,15 +22,20 @@ At the most basic level, they r limited availability sales in qty or time
 5. identifying malicious users
 
 # Non Functional
-1. handle high write load - checkout driven
+1. handle high read load - storefront
+2. handle high write load and interact with external services - checkout 
     1. Inventory deduction throughput of a Single Product upto 1k per sec - flipkart flash sale numbers
-3. high availability
+3. handle high read & write mix - shopify admin managing OMS & WMS  
+
+![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/flash_sale_read_write_basis_business_modules.png)
+
+5. high availability
     1. users are able to buy products, merchants able to sell products easily
-5. low latency
-6. scalable
-7. Observability
-8. manage ddos: unfair means will be used due to competitiveness and limited inventory on sale
-9. considering high profile social media celebrity sell their white labelled inventory - social media customer back lash to be avoided at any cost
+6. low latency
+7. scalable
+8. Observability
+9. manage ddos: unfair means will be used due to competitiveness and limited inventory on sale
+10. considering high profile social media celebrity sell their white labelled inventory - social media customer back lash to be avoided at any cost
 
 # Scale Assumptions
 1. Around 110 orders per sec - 10 million orders in day
