@@ -7,9 +7,9 @@ At the most basic level, they r limited availability sales in qty or time
 3. https://hackernoon.com/developing-a-flash-sale-system-7481f6ede0a3
 4. https://www.alibabacloud.com/blog/double-eleven-technology-series-flash-sales-optimization-on-postgresql_594096
 5. https://www.youtube.com/watch?v=x4CQlmXU06s
-6. https://www.youtube.com/watch?v=x4CQlmXU06s
 7. https://www.youtube.com/watch?v=mka-KSHsCJo&t=469s
 8. https://www.youtube.com/watch?v=-I4tIudkArY
+9. https://www.infoq.com/presentations/shopify-architecture-flash-sale/
 
 # Functional 
 1. in case of too high load, backpressure with proper message to buyer
