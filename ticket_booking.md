@@ -1,5 +1,6 @@
 # References
 https://www.youtube.com/watch?v=lBAwJgoO3Ek
+https://www.youtube.com/watch?v=6UAlDIzqhBo
 
 # Requirements
 1. user can see the latest status of ticket availability 
@@ -26,3 +27,11 @@ https://www.youtube.com/watch?v=lBAwJgoO3Ek
 
 # HLD 
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/booking_design_hld.pdf
+
+# Data Modelling
+![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/ticketing_lld_1.png)
+![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/ticketing_lld_2.png)
+
+# API 
+![]()
+
