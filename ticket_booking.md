@@ -3,12 +3,20 @@ https://www.youtube.com/watch?v=lBAwJgoO3Ek
 
 https://www.youtube.com/watch?v=6UAlDIzqhBo
 
+https://astikanand.github.io/techblogs/high-level-system-design/design-bookmyshow
+
 # Requirements
-1. user can see the latest status of ticket availability 
-2. user can make payment & complete booking
-3. user can pos reviews & comments
-4. user receives booking notifications
-5. user receives movie/event recommnedations based his/her profile
+1. user can see the cities where booking platform is serving
+2. user can see the movies with live shows in that city
+3. user can see the city->movie->theatres with live shows
+4. user can see the city->movie->theatres->show timings 
+5. user can see the city->movie->theatres->show timing -> seating grid and availability
+6. user can hold the seats while he completes the booking
+7. user can make payment & complete booking for a show
+8. user can post reviews & comments around movie
+9. user receives booking notifications
+10. user receives movie/event recommendations based his/her profile
+11. waiting customers fairness FIFO
 
 # NFR
 1. high scale of requests - booking, reading reviews etc. (90k bookings in a day)
