@@ -5,6 +5,8 @@ https://www.youtube.com/watch?v=6UAlDIzqhBo
 
 https://astikanand.github.io/techblogs/high-level-system-design/design-bookmyshow
 
+https://akshitbansall.medium.com/db-locking-in-reservation-systems-3b3d574c7676
+
 # Requirements
 1. user can see the cities where booking platform is serving
 2. user can see the movies with live shows in that city
