@@ -37,7 +37,7 @@ decline or push over queue and execute later
    2. rate limit rules/thresholds
 3. rate limit rules are persisted in a db
 
-![]()
+![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/ratelimit_hld.png)
    
 
 
