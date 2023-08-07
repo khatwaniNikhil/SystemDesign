@@ -50,15 +50,19 @@ At the most basic level, they r limited availability sales in qty or time
 
         ![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/checkout_throttle_handling.png)
 
-4. **stateless fair throttling** of users **managing any state around request originate time which can later be spof**
-   1. define lag delimeter - time elapsed since start of sale
-       1. during non sale hours - lag delimeter is current time(all requests are high priority and no one is throttled)
-       2. during flash sale - bucket fills quickly, lb will notice this and fine tune lag delimeter in order to reach goal of 16 (size of leaky bucket) requests hitting the bucket, if more than 16 requests are reaching bucket then all will be throttled
-   3. basis before/after lag delimeter - categorize requests into high and low  priority
-   4. low priority immediately throttled
-   5. high priority go through leaky bucket 
-   6. leaky bucket is per load balancer
-   7. capacity of each leak bucket = total capacity/no. of load balancers
+4. Need queuing of user requests for **fair throttling** but has to be **stateless**  as managing any state around request originate time can later be spof
+   1. not exactly stateless -
+       1.1 as each LB will have state internally but no state across LB.
+       1.2 Additionally, each user is provided with secure signed cookie contianing its first request time.
+   2. Feedback systems based optimisation and lag delimeter
+       1. Picture a thermostat - let say we want to set room temp. to X and thermostat sense current room temp. and set commands to airconditioner acccordingly inc./dec. room temp. but at the same time outside chill or sunlight will also interfer and sensor will sense and pass that as feedback.
+       2. lag delimeter - time elapsed since start of sale
+       3. lag delimeter is fine tuned based on feedback of current request load to achive goal of capacity of a leaky bucket of a LB(shopify used 16 size leaky bucket)
+       4. categorise requests based on lag delimeter (per LB)into high priority and low priority requests.
+       5. low priority requests are immediately throttled and high priority buckets were passed to leaky bucket
+       6. during non sale hours - lag delimeter is current time(all requests are high priority and no one is throttled)
+       7. during sale: low priority immediately throttled, high priority go through leaky bucket
+       8. capacity of each leak bucket = total capacity/no. of load balancers
    
 6. prevents ddos
    1. blacklisting & whitleisting ip support
