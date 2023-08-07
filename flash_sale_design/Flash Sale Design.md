@@ -56,13 +56,12 @@ At the most basic level, they r limited availability sales in qty or time
        1.2 Additionally, each user is provided with secure signed cookie contianing its first request time.
    2. Feedback systems based optimisation and lag delimeter
        1. Picture a thermostat optmising for customer set temp. - let say we want to set room temp. to X and thermostat sense current room temp. and set commands to airconditioner acccordingly inc./dec. room temp. but at the same time outside chill or sunlight will also interfer and sensor will sense and pass that as feedback.
-       2. similarly lag delimeter(time elapsed since start of sale) will optimise for no of requests reaching leaky bucket.
-       3. lag delimeter is fine tuned based on feedback of current request load to achive goal of no of requests/capacity of a leaky bucket of a LB(shopify used 16 size leaky bucket)
-       4. requests are categorised based on lag delimeter (per LB) into high priority and low priority requests.
-       5. low priority requests are immediately throttled and high priority buckets were passed to leaky bucket.
-       6. during non sale hours - lag delimeter is current time(all requests are high priority and no one is throttled).
-       7. during sale: low priority immediately throttled, high priority go through leaky bucket.
-       8. capacity of each leak bucket = total capacity/no. of load balancers.
+       2. Similarly lag delimeter(time elapsed since start of sale) will be continously tuned based on current request load to achieve goal of no of requests/capacity of a leaky bucket of a LB(shopify used 16 size leaky bucket).
+       3. requests are categorised based on lag delimeter (per LB) into high priority and low priority requests.
+       4. low priority requests are immediately throttled and high priority buckets were passed to leaky bucket.
+       5. during non sale hours - lag delimeter is current time(all requests are high priority and no one is throttled).
+       6. during sale: low priority immediately throttled, high priority go through leaky bucket.
+       7. capacity of each leak bucket = total capacity/no. of load balancers.
    
 6. prevents ddos
    1. blacklisting & whitleisting ip support
