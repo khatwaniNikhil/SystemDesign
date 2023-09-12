@@ -1,15 +1,17 @@
-1. Globally shared next_user_id which can be atomically incremented
-2. Globally shared next_user_id which can be atomically incremented
-3. Hash "userid to user's data": 
-		HSET user:$userid username $username password $encrypted_password
-4. Hash "username to userid lookup"
-		HSET users $username $userid
-4. User-followers and followes(sorted set)
-	followers:$userid => sorted set(timestamp as element score)
-	following:$userid => sorted set(timestamp as element score)
-5. user timeline(list of posts)			
-	posts:$userid user_id $owner_id time $time body "I'm having fun with Retwis"
+1. "next_user_id" key with Redis INCR operation to calculate next user id atomically
+    INCR next_user_id => 1000
+2. Hash "userid to user's data": 
+		HSET user:1000 username antirez password p1pp0
+3. Hash "username to userid lookup"
+		HSET users antirez 1000
+4. Sorted-Set User-followers and followes
+	zadd followers:$userid $time1 $user1 $time2 $user2
+	zadd following:$userid $time1 $user1 $time2 $user2
+5. user timeline(list of posts)	
+        LPUSH posts:1000 postid1
+        LPUSH posts:1000 postid2
 6. Auth
 	within user hash(user:$userid) - random unguessable string to set as the auth secret/cookie of an authenticated user
+        HSET user:1000 auth fea5e81ac8ca77622bed1c2132a021f9
 7. HASH: map authentication secrets to user IDs
-	auths $userhash $userid
+	HSET auths fea5e81ac8ca77622bed1c2132a021f9 1000
