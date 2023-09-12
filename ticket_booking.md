@@ -8,17 +8,16 @@ https://astikanand.github.io/techblogs/high-level-system-design/design-bookmysho
 https://akshitbansall.medium.com/db-locking-in-reservation-systems-3b3d574c7676
 
 # Requirements
-1. user can see the cities where booking platform is serving
-2. user can see the movies with live shows in that city
-3. user can see the city->movie->theatres with live shows
-4. user can see the city->movie->theatres->show timings 
-5. user can see the city->movie->theatres->show timing -> seating grid and availability
-6. user can hold the seats while he completes the booking
-7. user can make payment & complete booking for a show
-8. user can post reviews & comments around movie
-9. user receives booking notifications
-10. user receives movie/event recommendations based his/her profile
-11. waiting customers fairness FIFO
+1. cities served
+2. theatres served - seat grid
+3. movies/shows served
+4. cities, movies, theatres, date-timing, seat availability mapping
+5. user can hold the seats while he completes the booking
+8. user can make payment & complete booking for a show
+9. user can post reviews & comments around movie
+10. user receives booking notifications
+11. user receives movie/event recommendations based his/her profile
+12. waiting customers fairness FIFO
 
 # NFR
 1. high scale of requests - booking, reading reviews etc. (90k bookings in a day)
