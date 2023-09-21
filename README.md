@@ -1,3 +1,6 @@
+# How_to_approach_scaling
+https://github.com/khatwaniNikhil/SystemDesign/blob/main/How_to_approach_scaling.md
+
 # Template - System Design
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/system_design_strategy.md
 
