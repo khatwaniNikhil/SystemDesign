@@ -26,3 +26,6 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/twitter_data_modelling_
 
 ## Bruteforce_Password_Retriever
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/Bruteforce_Password_Retriever.md
+
+## DownloadManager
+https://github.com/khatwaniNikhil/DownloadManager
