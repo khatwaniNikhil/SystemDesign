@@ -16,6 +16,8 @@ https://github.com/khatwaniNikhil/OOAD-DesignPatterns
 
 #### ParkingLot
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/ParkingLot.pdf
+https://github.com/khatwaniNikhil/Parking-Lot-Problem
+https://github.com/khatwaniNikhil/Parking-Lot-Problem-Extended
 
 #### Twitter - Data modelling
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/twitter_data_modelling_redis
