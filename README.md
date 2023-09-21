@@ -7,6 +7,9 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/system_design_strategy.
 # API Design - Best practises (Stripe)
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/API_Design.md
 
+# systems_design_fundamentals_notes
+https://github.com/khatwaniNikhil/algoexpert_systems_design_fundamentals_notes
+
 # Examples of System Design
 
 ## ParkingLot
