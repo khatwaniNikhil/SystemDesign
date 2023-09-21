@@ -8,6 +8,9 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/How_to_approach_scaling
 #### API Design - Best practises (Stripe)
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/API_Design.md
 
+#### streaming arch
+https://github.com/khatwaniNikhil/streaming_architecture.md
+
 # OOAD
 #### design-patterns
 https://github.com/khatwaniNikhil/awesome-design-patterns
@@ -59,6 +62,7 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/URL%20Shortener.pdf
 
 #### Rate Limiter
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/rate_limiter.md
+https://github.com/khatwaniNikhil/RateLimiter
 
 #### Ticket booking
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/ticket_booking.md
