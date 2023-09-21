@@ -20,3 +20,6 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/ticket_booking.md
 
 ## Twitter - Data modelling
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/twitter_data_modelling_redis
+
+## Bruteforce_Password_Retriever
+https://github.com/khatwaniNikhil/SystemDesign/blob/main/Bruteforce_Password_Retriever.md
