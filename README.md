@@ -69,3 +69,6 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/ticket_booking.md
 
 #### Bruteforce_Password_Retriever
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/Bruteforce_Password_Retriever.md
+
+#### customer_segmentation_design
+https://github.com/khatwaniNikhil/customer_segmentation_design
