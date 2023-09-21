@@ -9,6 +9,11 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/How_to_approach_scaling
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/API_Design.md
 
 # OOAD
+#### design-patterns
+https://github.com/khatwaniNikhil/awesome-design-patterns
+https://github.com/khatwaniNikhil/java-design-patterns
+https://github.com/khatwaniNikhil/OOAD-DesignPatterns
+
 #### ParkingLot
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/ParkingLot.pdf
 
@@ -18,7 +23,29 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/twitter_data_modelling_
 #### DownloadManager
 https://github.com/khatwaniNikhil/DownloadManager
 
+#### OOAD Design challenges
+https://github.com/khatwaniNikhil/grokking-the-object-oriented-design-interview
+
 # E2E System Design
+
+#### system-design-questions
+https://github.com/khatwaniNikhil/system-design-questions
+
+#### learn-system-design
+https://github.com/khatwaniNikhil/learn-system-design
+
+#### learning-path-system-design
+https://github.com/khatwaniNikhil/learning-path-system-design
+
+#### LLD-design-primer
+https://github.com/khatwaniNikhil/low-level-design-primer
+
+#### mobile-system-design
+https://github.com/khatwaniNikhil/mobile-system-design
+
+#### system-design-and-architecture
+https://github.com/khatwaniNikhil/system-design-and-architecture
+
 #### Template - System Design
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/system_design_strategy.md
 
