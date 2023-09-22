@@ -78,7 +78,8 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/splitwise.md
 
 #### TODO
 
-##### scalable payment settlement(scheduled for each upcoming day) engine
+1. scalable payment settlement(scheduled for each upcoming day) engine
+https://github.com/khatwaniNikhil/SystemDesign/blob/main/payment_settlement_engine.md
 
 
 
