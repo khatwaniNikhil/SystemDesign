@@ -74,3 +74,40 @@ source_user owes destination user some amount for transaction at timestamp T
     "totalAmount": 100
 }
 ```
+
+# JSON based Application level Class Design
+public enum ExpenseType {
+    EQUAL, PERCENT, FIXED    
+}
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes({
+    @JsonSubTypes.Type(value=EqualExpense.class, name="EQUAL"),
+    @JsonSubTypes.Type(value=PercentExpense.class, name="PERCENT")
+})
+
+public  class AbstractExpense {
+    private final String code;
+    private final Person paidBy;
+    private final BigDecimal paidAmount;
+    private final ExpenseType type;
+    private final Set<Person> personsSharingExpense;
+
+    
+    public Expense(String code, Person paidBy, BigDecimal paidAmount, SplitType splitType, Set<Person> personsSharingExpense) {
+        this.code = code;
+        this.paidBy = paidBy;
+        this.paidAmount = paidAmount;
+        this.splitType  = splitType;
+        this.personsSharingExpense = personsSharingExpense;
+        calculateTransfers();
+    }
+}
+
+public class EqualExpense extends AbstractExpense  {
+    ...
+}
+
+public class PercentExpense extends AbstractExpense {
+    ...
+}
