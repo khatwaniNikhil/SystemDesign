@@ -17,10 +17,9 @@ https://github.com/khatwaniNikhil/awesome-design-patterns
 https://github.com/khatwaniNikhil/java-design-patterns
 https://github.com/khatwaniNikhil/OOAD-DesignPatterns
 
-#### ParkingLot
-https://github.com/khatwaniNikhil/SystemDesign/blob/main/ParkingLot.pdf
-https://github.com/khatwaniNikhil/Parking-Lot-Problem
-https://github.com/khatwaniNikhil/Parking-Lot-Problem-Extended
+#### ParkingLot(TODO)
+1. Problem Description: https://github.com/khatwaniNikhil/SystemDesign/blob/main/Parking%20Lot.pdf
+2. MyRejectectedSolutionAtGoJek: https://github.com/khatwaniNikhil/ParkingLotImpl     
 
 #### Twitter - Data modelling
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/twitter_data_modelling_redis
