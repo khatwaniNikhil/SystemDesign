@@ -31,6 +31,9 @@ https://github.com/khatwaniNikhil/DownloadManager
 #### FileDirectory-DesignChallenge(TODO)
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/FileDirectory-DesignChallenge.md
 
+#### RankTeamByVotes(TODO)
+https://github.com/varunu28/LeetCode-Java-Solutions/blob/master/Medium/Rank%20Teams%20by%20Votes.java
+
 #### OOAD Design challenges
 https://github.com/khatwaniNikhil/grokking-the-object-oriented-design-interview
 
@@ -79,10 +82,10 @@ https://github.com/khatwaniNikhil/customer_segmentation_design
 #### splitwise
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/splitwise.md
 
-#### TODO
-
-1. scalable payment settlement(scheduled for each upcoming day) engine
+#### scalable payment settlement(scheduled for each upcoming day) engine -  TODO
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/payment_settlement_engine.md
+
+#### Design JIRA like system (TODO)
 
 
 
