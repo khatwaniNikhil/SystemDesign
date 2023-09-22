@@ -72,3 +72,7 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/Bruteforce_Password_Ret
 
 #### customer_segmentation_design
 https://github.com/khatwaniNikhil/customer_segmentation_design
+
+#### splitwise
+https://github.com/khatwaniNikhil/SystemDesign/blob/main/splitwise.md
+
