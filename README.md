@@ -28,12 +28,6 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/twitter_data_modelling_
 #### DownloadManager
 https://github.com/khatwaniNikhil/DownloadManager
 
-#### FileDirectory-DesignChallenge(TODO)
-https://github.com/khatwaniNikhil/SystemDesign/blob/main/FileDirectory-DesignChallenge.md
-
-#### RankTeamByVotes(TODO)
-https://github.com/varunu28/LeetCode-Java-Solutions/blob/master/Medium/Rank%20Teams%20by%20Votes.java
-
 #### OOAD Design challenges
 https://github.com/khatwaniNikhil/grokking-the-object-oriented-design-interview
 
