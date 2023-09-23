@@ -1,7 +1,4 @@
 # Concepts
-#### Distributed_systems_notes
-https://github.com/khatwaniNikhil/distributed_systems_notes
-
 #### How_to_approach_scaling
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/How_to_approach_scaling.md
 
@@ -16,6 +13,9 @@ https://github.com/khatwaniNikhil/streaming_architecture.md
 https://github.com/khatwaniNikhil/awesome-design-patterns
 https://github.com/khatwaniNikhil/java-design-patterns
 https://github.com/khatwaniNikhil/OOAD-DesignPatterns
+
+#### Distributed_systems_notes (TODO)
+https://github.com/khatwaniNikhil/distributed_systems_notes
 
 #### ParkingLot(TODO)
 1. Problem Description: https://github.com/khatwaniNikhil/SystemDesign/blob/main/Parking%20Lot.pdf
