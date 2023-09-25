@@ -8,6 +8,9 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/API_Design.md
 #### streaming arch
 https://github.com/khatwaniNikhil/streaming_architecture.md
 
+#### REDIS vs Kafka
+https://opencredo.com/blogs/kafka-vs-rabbitmq-the-consumer-driven-choice/
+
 # OOAD
 #### design-patterns
 https://github.com/khatwaniNikhil/awesome-design-patterns
@@ -79,7 +82,3 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/splitwise.md
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/payment_settlement_engine.md
 
 #### Design JIRA like system (TODO)
-
-
-
-
