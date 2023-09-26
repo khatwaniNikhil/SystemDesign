@@ -85,3 +85,6 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/splitwise.md
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/payment_settlement_engine.md
 
 #### Design JIRA like system (TODO)
+
+#### Design ChatRoom
+https://github.com/khatwaniNikhil/SystemDesign/blob/main/design_chat_room.md
