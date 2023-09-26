@@ -5,6 +5,9 @@ https://github.com/khatwaniNikhil/SystemDesign/blob/main/How_to_approach_scaling
 #### API Design - Best practises (Stripe)
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/API_Design.md
 
+#### Queues_usecases
+https://github.com/khatwaniNikhil/SystemDesign/blob/main/queues_use_cases.md
+
 #### streaming arch
 https://github.com/khatwaniNikhil/streaming_architecture.md
 
