@@ -1,4 +1,7 @@
 # Concepts
+# JWT are not secure and should be used for specific use cases only
+https://github.com/khatwaniNikhil/SystemDesign/blob/main/jwts-not-safe-e-book.pdf
+
 #### How_to_approach_scaling
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/How_to_approach_scaling.md
 
