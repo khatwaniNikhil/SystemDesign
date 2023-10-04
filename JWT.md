@@ -1,3 +1,6 @@
+# References
+https://github.com/khatwaniNikhil/SystemDesign/blob/main/jwts-not-safe-e-book.pdf
+
 # Cookie based sessions
 1. http sessions data is generally stored on server side db for safety and
 session token(opaque, random string) is returned to client as cookie which is exchanged in subsequent requests.
