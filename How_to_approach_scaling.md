@@ -1,7 +1,7 @@
 # References
-http://highscalability.com/blog/2012/5/16/big-list-of-20-common-bottlenecks.html
-https://medium.com/@pavan.baburao/how-to-scale-backend-239221fe7bb0
-https://www.linkedin.com/pulse/boosting-your-applications-scalability-why-grpc-future-albin-joseph/
+1. http://highscalability.com/blog/2012/5/16/big-list-of-20-common-bottlenecks.html
+2. https://medium.com/@pavan.baburao/how-to-scale-backend-239221fe7bb0
+3. https://www.linkedin.com/pulse/boosting-your-applications-scalability-why-grpc-future-albin-joseph/
 
 # Step 1 Identify component which needs scaling
 1. Network
@@ -25,7 +25,7 @@ https://www.linkedin.com/pulse/boosting-your-applications-scalability-why-grpc-f
    1. Context switches
    2. CPU overload - GC Pauses
 4. Queue
-   1. ordering events
+   1. produce consume rate mismatch leading to queue depth on higher side
 5. Memory
    1. OOM
    2. Swap overhead
@@ -36,9 +36,17 @@ https://www.linkedin.com/pulse/boosting-your-applications-scalability-why-grpc-f
 # Prioritse effort as per latency hierarchy: 
 N/w > disk IO > Memory > CPU
 
-## N/W: waiting for n/w requests to complete
-1. Infra upgrade - if API server is becoming bottleneck, upgrade vertically or horizontally
-2. Reduce network requests - use batching, caching response(if not changing very frequently) to avoid duplicate hits
+## Network
+### Symptoms
+waiting for requests to complete
+
+### Tools for network monitoring
+1. https://www.baeldung.com/linux/monitor-network-usage
+stats per network interface, per connection socket, per respective process id
+nload, speedometer, iftop, nethogs  
+
+### Tuning tips
+1. Reduce requests over network - use batching, caching response(if not changing very frequently) to avoid duplicate hits
 3. consider GRPC over json:
    1. binary protocol over text(json) is much more efficient/reduced network overhead
    2. http/2 request multiplexing, bidirection streaming support, server push and header compressin
