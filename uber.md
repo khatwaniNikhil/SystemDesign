@@ -1,7 +1,12 @@
 # References
 https://www.youtube.com/watch?v=R_agd5qZ26Y&list=PLPkuArhPxxQGkbl-_STo8FFxBBB4ri-tl&index=1
 
-![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/uber-arch.png)
+# Requirements
+![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/Screenshot%20(36).png)
+![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/Screenshot%20(38).png)
+
+# Arch. Diagram
+![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/Screenshot%20(39).png)
 
 # Scalable Real time commn across multiple microservices
 event bus like kafka with subscription by microservices.
