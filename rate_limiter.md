@@ -7,8 +7,8 @@ https://github.com/Salah856/System-Design/blob/main/Design%20Rate%20Limiter.md
 3. manage cost & resources efficiently
 
 # Granularity
-api or network level
-client level or api level or client-api level
+1. api or network level
+2. client level or api level or client-api level
 
 # Client side/server side rate limit
 unless trusted client and common SDK,  client side not in full control - security & ops(dynamic change)
@@ -30,7 +30,7 @@ decline or push over queue and execute later
 429 status code with header X-RateLimit-RetryAfter
 
 # HLD
-1. leverage API gateway or other solution below level/server level
+1. leverage API gateway or other solution
 2. choose best suited algo for rate limit: token bucket, leaky bucket, fixed window, sliding window
 3. use redis
    1. counters around client api hits in current time interval
