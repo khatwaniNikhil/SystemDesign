@@ -87,7 +87,7 @@ https://github.com/khatwaniNikhil/customer_segmentation_design
 #### 15. splitwise
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/splitwise.md
 
-#### 16. scalable payment settlement(scheduled for each upcoming day) engine -  TODO
+#### 16. scalable payment settlement(scheduled for each upcoming day) engine
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/payment_settlement_engine.md
 
 #### 17. Design JIRA like system (TODO)
