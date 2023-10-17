@@ -8,13 +8,9 @@ https://www.youtube.com/watch?v=R_agd5qZ26Y&list=PLPkuArhPxxQGkbl-_STo8FFxBBB4ri
 # Arch. Diagram
 ![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/Screenshot%20(39).png)
 
-# Scalable Real time commn across multiple microservices
-event bus like kafka with subscription by microservices.
-
-# Real time commn across drivers and riders
 1. load balanced cluster of driver and rider api's
-2. maintain websockets persistent connection of driver and rider with there respective api's
-3. driver and rider api commn with each other to trigger notifications for rider/driver.
+2. For cross communication of different microservies hosted by api's - event bus/kafka with subscription by diff. microservices.
+3. maintain websockets persistent connection of driver and rider with there respective api's
 
 # Database design
 1. high writes(based on driver's/ride journey) to db 
