@@ -39,5 +39,8 @@ secondary index becomes difficult to keep in memory. To save space UUIDs should 
 2. Not being ordered
 
 # Approach 4 - Custom key generators - Twitter snowflake
-1. based on timestamp, datacenter id, machine id, sequence no(allows 4096 unique id's generated on a single machine within a millisec internal, post that it is reset to zero)
-2. timestamp 41 bits make it sortable by time.
+https://abheist.com/twitter-snowflake-for-unique-ids/
+https://blog.twitter.com/engineering/en_us/a/2010/announcing-snowflake
+1. based on timestamp, datacenter id, machine id, sequence no((generated on a single machine within a millisec internal - post that it is reset to zero)
+2. seq no allows it to generate 4096 unique id's per millisec .
+3. timestamp 41 bits make it sortable by time.
