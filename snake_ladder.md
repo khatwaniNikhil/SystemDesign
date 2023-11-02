@@ -1,29 +1,38 @@
+```
 Snake
    bitePosition
    tailPosition
+```
 
+```
 Dice
    int roll();
+```
 
+```
 Cell
    int cellId;
    List<Player> getPlayersOnCell();
-   booelan isGameFinishCell();
-   
-
+```
+```   
 Player
    Cell location;
    Cell getCurrentLocation();
    void	setCurrentLocation(Cell cell);	
-
+```
+```
 Board
+   List<Cell> cells;
    private Map<Cell bitePosition, Cell tailPosition> snakes;
    private Map<Player, Cell> playerLocationMap;	   
 
    boolean willSnakeBiteOnCell(Cell currentCellid);
    Cell	   newCellOnSnakeBiteOnCell(Cell currentCellId);	
-   Cell	   getPlayerCurrentLocation(Player player);	   	
-
+   Cell	   getPlayerCurrentLocation(Player player);
+   Cell	   getStartCell();
+   Cell	   getEndCell();		   	   	
+```
+```
 Game
      //to manage turns	
      Queue<Player> playerQueue;	
@@ -32,8 +41,7 @@ Game
 	
       // each player plays turn by turn	
       Player play(){
-		 
-		while(1) {
+        	while(1) {
 			// Player currentPlayer = remove top player of queue
 			// rotate dice to get offset
 			// find new location of player via offset
@@ -50,4 +58,4 @@ Game
 	     setStatus(Status status);
       Player getPlayerWithNextTurn();
       void   setPlayerWithNextTurn(Player player);
-	      	     			
+```	      	     			
