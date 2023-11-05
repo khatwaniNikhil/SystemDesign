@@ -20,6 +20,9 @@ https://opencredo.com/blogs/kafka-vs-rabbitmq-the-consumer-driven-choice/
 #### 7. Exactly Once delivery
 https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/
 
+#### 8. Polling vs LongPolling vs Websockets
+https://blog.bitsrc.io/choosing-between-long-polling-vs-websockets-for-server-updates-82b11f64bfbf
+
 # OOAD
 #### 1. design-patterns
 https://github.com/khatwaniNikhil/awesome-design-patterns
