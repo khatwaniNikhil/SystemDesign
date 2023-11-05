@@ -17,6 +17,9 @@ https://github.com/khatwaniNikhil/streaming_architecture.md
 #### 6. REDIS vs Kafka
 https://opencredo.com/blogs/kafka-vs-rabbitmq-the-consumer-driven-choice/
 
+#### 7. Exactly Once delivery
+https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/
+
 # OOAD
 #### 1. design-patterns
 https://github.com/khatwaniNikhil/awesome-design-patterns
