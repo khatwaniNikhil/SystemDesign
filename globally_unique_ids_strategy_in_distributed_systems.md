@@ -1,5 +1,5 @@
-# Approach 1  - AutoIncrement Id
-1. Suitable as long as we don't have sharded/horizontally scalable database requirements. Master is the authority of id gen with slave replicas
+# Approach 1  - Using AutoIncrement Id via multi master db nodes
+1. With K db nodes, each generate auto increment id's with offset of K across two id's generated on same node. However, it has scaling issues as nodes are added, removed, crashed.
 
 ## references
 1. https://www.pythian.com/blog/case-auto-increment-mysql
