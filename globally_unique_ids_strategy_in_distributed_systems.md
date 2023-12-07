@@ -15,7 +15,6 @@
 # Approach 2 
 https://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/
 1. id generation separated from data store
-2. centralised auto increments without single point of failure
 3. one node generating 1,3,5,7 id's and other generating 2,4,6,8 etc.
 4. odd id's and even id's could drift away in case of downtimes of one of the id generating nodes.
 
