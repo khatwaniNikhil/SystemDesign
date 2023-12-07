@@ -1,15 +1,13 @@
 # Approach 1  - Using AutoIncrement Id via multi master db nodes
-1. With K db nodes, each generate auto increment id's with offset of K across two id's generated on same node. However, it has scaling issues as nodes are added, removed, crashed.
-
+1. With K db nodes, each generate auto increment id's with offset of K across two id's generated on same node. 
 ## references
 1. https://www.pythian.com/blog/case-auto-increment-mysql
 2. https://www.cockroachlabs.com/blog/the-hot-content-problem-metadata-storage-for-media-streaming/
 3. https://www.slideshare.net/davegardnerisme/unique-id-generation-in-distributed-systems
 
 ## challenges
-1. auto increment is not feasible for global uniqueness as soon as db is sharded across multiple nodes.
-2. in distributed systems setup, using autoincrement in mysql/serial in postgres can lead to hotspots -
-values generated around the same time have will often be similar and thus may be located close to each other in the table’s storage 
+1. it has scaling issues as nodes are added, removed.
+2. can lead to hotspots - values generated around the same time have will often be similar and thus may be located close to each other in the table’s storage. 
 3. using auto increment id as PK of table will lead to any business need based access pattern needs alteast two hops - "secondary index which looks up autoincrement based PK index for actual data fetch". Since mysql table data is ordered by default by PK(clustered index), any non auto increment id key will be more efficient.
 4. auto increment leads to table level locks while txn commits and can lead to deadlocks also.
 5. when using auto increment with a mysql cluster(async replicatio to slaves), in case of master failure - it is risky to apply missing operations from the original master binlog to the new master.
