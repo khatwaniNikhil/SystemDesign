@@ -19,8 +19,8 @@ https://code.flickr.net/2010/02/08/ticket-servers-distributed-unique-primary-key
 4. odd id's and even id's could drift away in case of downtimes of one of the id generating nodes.
 
  # Approach 3 - UUID
-https://www.cockroachlabs.com/blog/what-is-a-uuid/
-https://dev.mysql.com/blog-archive/mysql-8-0-uuid-support/
+1. https://www.cockroachlabs.com/blog/what-is-a-uuid/
+2. https://dev.mysql.com/blog-archive/mysql-8-0-uuid-support/
 
 1. the keys are unique across tables, databases and servers - uses data time, random value and mac address of machine. 
 2. are hard(er) to guess (example from an URL)
