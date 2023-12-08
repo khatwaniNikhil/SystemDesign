@@ -2,28 +2,22 @@
 https://www.youtube.com/watch?v=IEe-5VOv0Js
 
 # Key goals - Api design
-1. simple & Approachable for the api consumer
-2. flexible for api developer
-3. collectively api's should be composable - for businesses to design & evolve their operating model
-
+1. simplicity/ease for consumption
+2. flexible for change
+3. secure   
 
 # Guiding principles
 ## Put Users first 
 1. Build for users of today but consider your platform/support/maintanance of tommorrow.
 2. Interview users and use patterns of feedback as north star
-3. AZ - work backwards model https://www.allthingsdistributed.com/2006/11/working_backwards.html
-   1. documents we'll need at launch
-       1. Press release - describes in a simple way what the product does and why it exists - what are the features and benefit
-       2. FAQ - includes questions(and their answers) that came up when we wrote the press release
-	 2. work towards documents that are closer to the implementatio
-       1. Define the customer experience:
+3. work backwards model to have a shared product vision https://www.allthingsdistributed.com/2006/11/working_backwards.html
+       1. Start by writing the Press Release
+       2. Write FAQ
+       3. Write User Manual
+       4. Define the customer experience:
            1. For products with a user interface, we would build mock ups of each screen
            2. For web services, we write use cases, including code snippets, which describe ways you can imagine people using the product.
-       2. User Manual: concepts, how-to, and reference
-   3. Don knuth findings:
-       1. "I came to the conclusion that the designer of a new system must not only be the implementer of the first large scale
-		and the first large scale user, the designer should also write the first user manual."		    
-
+         
 ## Spent time to make API good - Built it for builders
 	1) Predictable - Auto generate api doc and multi lang libraries
 	2) simplicity - map to real life concepts, intuitive
