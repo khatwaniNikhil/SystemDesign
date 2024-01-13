@@ -61,9 +61,9 @@ common db side tuning areas:
 5. Read replicas
 
 ### WRITES
-1. batch commits to db
-2. async writes to db
-3. logging write thresholds - rate limit and alerts around it
+1. batching commits to db
+2. queuing requests with async writes to db
+3. Throttling based on thresholds
 
 ## Memory: 
 profiling code paths +  gc logs debugging +  heap dump analysis
