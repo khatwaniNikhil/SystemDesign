@@ -11,12 +11,12 @@ https://www.youtube.com/watch?v=IEe-5VOv0Js
 1. Build for users of today but consider your platform/support/maintanance of tommorrow.
 2. Interview users and use patterns of feedback as north star
 3. work backwards model to have a shared product vision https://www.allthingsdistributed.com/2006/11/working_backwards.html
-       1. Start by writing the Press Release
-       2. Write FAQ
-       3. Write User Manual
-       4. Define the customer experience:
-           1. For products with a user interface, we would build mock ups of each screen
-           2. For web services, we write use cases, including code snippets, which describe ways you can imagine people using the product.
+    1. Start by writing the Press Release
+    2. Write FAQ
+    3. Write User Manual
+    4. Define the customer experience:
+        1. For products with a user interface, we would build mock ups of each screen
+        2. For web services, we write use cases, including code snippets, which describe ways you can imagine people using the product.
          
 ## Spent time to make API good - Built it for builders
 	1) Predictable - Auto generate api doc and multi lang libraries
@@ -53,7 +53,7 @@ https://www.youtube.com/watch?v=IEe-5VOv0Js
 
 ## Design your organization 
 1. Conway's law
-Organizations which design systems are constrained to produce designs, which are copies of the communication structures of these organizations.
+Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations.
 
 2. Basis no of teams work on a software system, there will tend to be separate software components. You can be intentional about how you build teams witin software engineering organization.
 
