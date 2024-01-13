@@ -6,26 +6,25 @@ limited qty available for sale during a short span of time
 2. https://www.youtube.com/watch?v=UvShsiHJOOY
 3. https://hackernoon.com/developing-a-flash-sale-system-7481f6ede0a3
 4. https://www.alibabacloud.com/blog/double-eleven-technology-series-flash-sales-optimization-on-postgresql_594096
-5. https://www.youtube.com/watch?v=x4CQlmXU06s
-7. https://www.youtube.com/watch?v=mka-KSHsCJo&t=469s
+5. https://www.youtube.com/watch?v=mka-KSHsCJo&t=469s
 8. https://www.youtube.com/watch?v=-I4tIudkArY
 9. https://www.infoq.com/presentations/shopify-architecture-flash-sale/
 
 # Functional 
-1. in case of too high load, backpressure with proper message to buyer
+1. in case of too high load, **backpressure** **but keep user engaged**(without showing HTTP 429 Too many requests)
 
     ![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/ux_backpressure.png)
     
-2. First come first served and fair throttling - some user waiting endlessly versus some user get lucky nd placed order as soon as they came
-3. avoid undersell: user dropped during the checkout process - payment failure, network issue etc.
-4. avoid over sell - race conditions around deduction of inventory with highly concurrent user requests.
-5. identifying malicious users & bots - tendency to purchase and later sale at higher price in secondary market
-6. Avoid mutiple charges - leading to customer complaints to credit cards and merchant has to bear dispute fees
+2. **First come first serve basis/fair throttling** - some user waiting endlessly versus some user get lucky nd placed order as soon as they came
+3. **avoid undersell**: user dropped during the checkout process - payment failure, network issue etc.
+4. **avoid over sell** - race conditions around deduction of inventory with highly concurrent user requests.
+5. **identifying malicious users & bots** - tendency to purchase and later sale at higher price in secondary market
+6. **Avoid mutiple charges** - leading to customer complaints to credit cards and merchant has to bear dispute fees
 
 # Non Functional
-1. handle high read load - storefront
-2. handle high write load and interact with external services - checkout 
-    1. Inventory deduction throughput of a Single Product upto 1k per sec - flipkart flash sale numbers
+1. handle **high read** load - storefront
+2. handle **high write** load and interact with external services - checkout 
+    1. Inventory deduction throughput of a Single SKU upto 1k per sec - flipkart flash sale numbers
 
 ![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/flash_sale_read_write_basis_business_modules.png)
 
@@ -38,19 +37,26 @@ limited qty available for sale during a short span of time
 9. considering high profile social media celebrity sell their white labelled inventory - social media customer back lash to be avoided at any cost
 
 # Scale Assumptions
-1. Around 110 orders per sec - 10 million orders in day
-2. Based on flipkart past sale no's, 600 million requests during flash sale, on avg. 6 million req per day on non flash sale service
-
+1. Around **100 orders per sec**/10 million orders in day
+   
 # System Design
-## Nginx 
-1. throttle using leaky bucket algo
-    1. once user's checkout is throttled - he is shown throttle page(cached by LB)
-    2. as per the UX requirement(refer functional requirement section) - throttled page javascript will keep polling the LB to see if there is enough capacity 
-    3. once LB gives go ahead to checkout, we places securely signed cookie in user session to avoid rethrolling the same user and let him complete checkout
+##  Challenge1: High Checkout Load leading to crashes/unavailability 
+1. Checkout with its massive number of writes
+2. every checkout session created a new record in MySQL and, exacerbating that, every step in the flow modified that same record.
+3. Long term solution: Refactor of the entire checkout flow to condense the number of writes into one, this was not feasible in limited time.
 
+##  Solution: Throttling with user engagement 
+1. leaky bucket algo. to throttle user, redirect the throttled user to queued page which is cached by LB.
+2. throttled page javascript will keep polling the /checkout endpoint to see if there is enough capacity. For users with Javascript disabled, we use meta refresh.
+3. When enough capacity available, LB gives go ahead to checkout, we place securely signed cookie in user session to avoid rethrolling the same user and let him complete checkout
+4. Tech stack: Nginx + Lua scripts + LB + javascript polling/Meta fresh + signed cookie(to avoid rethrottle once allowed to checkout)
+   
         ![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/checkout_throttle_handling.png)
 
-4. Need queuing of user requests for **fair throttling** but has to be **stateless**  as managing any state around request originate time can later be spof
+## Challenge2:  **UnFair throttling** leading to bad customer experience and social media/twitter backlash 
+1. Users who were throttled and asked to wait(added to queue) should be served on first come first basis
+
+## Solution
    1. not exactly stateless -
        1.1 as each LB will have state internally but no state across LB.
        1.2 Additionally, each user is provided with secure signed cookie contianing its first request time.
