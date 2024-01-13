@@ -46,17 +46,22 @@ limited qty available for sale during a short span of time
 3. Long term solution: Refactor of the entire checkout flow to condense the number of writes into one, this was not feasible in limited time.
 
 ##  Solution: Throttling with user engagement 
-1. leaky bucket algo. to throttle user, redirect the throttled user to queued page which is cached by LB.
-2. throttled page javascript will keep polling the /checkout endpoint to see if there is enough capacity. For users with Javascript disabled, we use meta refresh.
-3. When enough capacity available, LB gives go ahead to checkout, we place securely signed cookie in user session to avoid rethrolling the same user and let him complete checkout
-4. Tech stack: Nginx + Lua scripts + LB + javascript polling/Meta fresh + signed cookie(to avoid rethrottle once allowed to checkout)
+1. query optimisation is a good start but eventually too many requests will need backpressure support
+2. LB level capacity checks via leaky bucket algo. to throttle user, redirect the throttled user to queued page which is cached by LB.
+3. throttled page javascript will keep polling the /checkout endpoint to see if there is enough capacity. For users with Javascript disabled, we use meta refresh.
+4. When enough capacity available, LB gives go ahead to checkout, we place securely signed cookie in user session to avoid rethrolling the same user and let him complete checkout
+5. Tech stack: Nginx + Lua scripts + LB + javascript polling/Meta fresh + signed cookie(to avoid rethrottle once allowed to checkout)
    
         ![](https://github.com/khatwaniNikhil/SystemDesign/blob/main/images/checkout_throttle_handling.png)
 
 ## Challenge2:  **UnFair throttling** leading to bad customer experience and social media/twitter backlash 
-1. Users who were throttled and asked to wait(added to queue) should be served on first come first basis
+1. Users who were throttled and asked to wait(added to queue) should be served on first come first basis.
+2. Storing timestamp of first attempt of throttled users in a data store and each user polling request compare the same with other pending requests in data store. **Data store as **new point of failure** with cross dc replication is non trivial and will add latency**.
 
-## Solution
+## Solution: Stateless* Fair queueing
+1. Instead of maintaining data store - store threshold as state on each load balancer and have two step process. First step to decide users whose first request timestamp closess to threshold and allow them to proceed. In second step, do leaky bucket based check and polling for retries.  
+2.
+3. Attempt1: ## Solution
    1. not exactly stateless -
        1.1 as each LB will have state internally but no state across LB.
        1.2 Additionally, each user is provided with secure signed cookie contianing its first request time.
