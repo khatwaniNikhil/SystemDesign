@@ -2,11 +2,13 @@
 limited qty available for sale during a short span of time
 
 # References
-1. https://www.youtube.com/watch?v=x4CQlmXU06s
-2. https://www.youtube.com/watch?v=UvShsiHJOOY
-3. https://hackernoon.com/developing-a-flash-sale-system-7481f6ede0a3
-4. https://www.alibabacloud.com/blog/double-eleven-technology-series-flash-sales-optimization-on-postgresql_594096
-5. https://www.youtube.com/watch?v=mka-KSHsCJo&t=469s
+1. https://shopify.engineering/surviving-flashes-of-high-write-traffic-using-scriptable-load-balancers-part-i
+2. https://shopify.engineering/surviving-flashes-of-high-write-traffic-using-scriptable-load-balancers-part-ii
+3. https://www.youtube.com/watch?v=x4CQlmXU06s
+4. https://www.youtube.com/watch?v=UvShsiHJOOY
+5. https://hackernoon.com/developing-a-flash-sale-system-7481f6ede0a3
+6. https://www.alibabacloud.com/blog/double-eleven-technology-series-flash-sales-optimization-on-postgresql_594096
+7. https://www.youtube.com/watch?v=mka-KSHsCJo&t=469s
 8. https://www.youtube.com/watch?v=-I4tIudkArY
 9. https://www.infoq.com/presentations/shopify-architecture-flash-sale/
 
