@@ -2,7 +2,7 @@
 #### 1. JWT not safe, use for specific use cases only
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/JWT.md
 
-#### 2. How to approach_scaling
+#### 2. How to approach performance tuning
 https://github.com/khatwaniNikhil/SystemDesign/blob/main/How_to_approach_scaling.md
 
 #### 3. API Design - Best practises (Stripe)
