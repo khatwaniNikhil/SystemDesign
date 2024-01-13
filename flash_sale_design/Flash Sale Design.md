@@ -1,5 +1,5 @@
 # Flash Sale
-At the most basic level, they r limited availability sales in qty or time
+limited qty available for sale during a short span of time
 
 # References
 1. https://www.youtube.com/watch?v=x4CQlmXU06s
