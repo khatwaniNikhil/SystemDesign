@@ -45,7 +45,7 @@ limited qty available for sale during a short span of time
 2. every checkout session created a new record in MySQL and, exacerbating that, every step in the flow modified that same record.
 3. Long term solution: Refactor of the entire checkout flow to condense the number of writes into one, this was not feasible in limited time.
 
-##  Solution: Throttling with user engagement 
+##  Solution: Throttling with user engagement with random polling
 1. query optimisation is a good start but eventually too many requests will need backpressure support
 2. LB level capacity checks via leaky bucket algo. to throttle user, redirect the throttled user to queued page which is cached by LB.
 3. throttled page javascript will keep polling the /checkout endpoint to see if there is enough capacity. For users with Javascript disabled, we use meta refresh.
@@ -59,50 +59,28 @@ limited qty available for sale during a short span of time
 2. Storing timestamp of first attempt of throttled users in a data store and each user polling request compare the same with other pending requests in data store. **Data store as **new point of failure** with cross dc replication is non trivial and will add latency**.
 
 ## Solution: Stateless* Fair queueing
-1. Instead of maintaining data store - store threshold as state on each load balancer and have two step process. First step to decide users whose first request timestamp closess to threshold and allow them to proceed. In second step, do leaky bucket based check and polling for retries.  
-2.
-3. Attempt1: ## Solution
-   1. not exactly stateless -
-       1.1 as each LB will have state internally but no state across LB.
-       1.2 Additionally, each user is provided with secure signed cookie contianing its first request time.
-   2. Feedback systems based optimisation and lag delimeter
-       1. Picture a thermostat optmising for customer set temp. - let say we want to set room temp. to X and thermostat sense current room temp. and set commands to airconditioner acccordingly inc./dec. room temp. but at the same time outside chill or sunlight will also interfer and sensor will sense and pass that as feedback.
-       2. Similarly lag delimeter(time elapsed since start of sale) will be continously tuned based on current request load to achieve goal of no of requests/capacity of a leaky bucket of a LB(shopify used 16 size leaky bucket).
-        1. requests are categorised based on lag delimeter (per LB) into high priority and low priority requests.
-        2. Low priority immediately throttled, high priority go through leaky bucket. During non sale hours - lag delimeter is current time(all requests are high priority and no one is throttled).
-        3. low priority requests are immediately throttled and high priority buckets were passed to leaky bucket.
-        4. capacity of each leak bucket = total capacity/no. of load balancers.
-   
-6. prevents ddos
-   1. blacklisting & whitleisting ip support
-   2. per ip limit no. of reqs in a min. etc.
-   3. limit max connections to webserver
-   4. close slow connections
-7. event loop based architecture - scalable to high load of http requests
-8. customised nginx - openresty as application load balancer
-    1. shopify used openresty - written on top of nginx - adding luaJIT to write lua scripts to modify the flow of requests 
-        1. shopify leveraged the same to create http router to enable multi dc
-        2. muti dc caching framework
-        3. additional logging
+1. Instead of maintaining data store: store threshold as state on each load balancer, each user is provided with secure signed cookie contianing its first request time and have two step process
+   1. First step to decide users whose first request timestamp closess to threshold and allow them to proceed to second step.
+   2. In second step, throttle first step pass set of users using leaky bucket based check and polling for retries.  
 
+## Challenge3: Skewness created by users who made early first requests but closed without waiting at polling page before they get chance to checkout
+## Solution: Self adjusting threshold based on incoming traffic
+1. Inspired from control systems and PID controller/ digital climate control in your home - Idea is to keep calculating how far we are from goal and then calculate correction required to reach goal. Picture a thermostat optmising for customer set temp. - let say we want to set room temp. to X and thermostat sense current room temp. and set commands to airconditioner acccordingly inc./dec. room temp. but at the same time outside chill or sunlight will also interfer and sensor will sense and pass that as feedback.
+2. Threshold/lag delimeter is compared with first request by user timestamp in cookie to categorise incoming requests into low and high priority. Low priority were instantly throttled and high priortity were passed to leaky bucket. Capacity of leaky bucket(no of high priority requests to allow) was local(total capacity/no. of LBs) to load balancer to avoid global shared state across Load balancer's in the cluster
+3. How it works: let say lag delimeter starts with current time and all requests as they arrive after current time are categorised as high priority and eventually leaky bucket of a LB gets full. The threshold is dynamic, so that once the bucket fills up, the threshold demarcates requests into high and low priority.  Once room opens up again, the threshold recalculates, and the appropriate number of low priority requests become high priority. LB adjusts lag delimeter so that no. of requests hitting the bucket are not more than capacity of that LB. If at any instant more than current lag delimeter requests hit all are throttled.
 
-## Cache 
-1. Cache api responses which r mostly static like item description
+## Challenge4: Handling DDOS
+## Solution
+1. blacklisting & whitleisting ip support
+2. per ip limit no. of reqs in a minute
+3. limit max connections to webserver
+4. close slow connections
 
-## Server
-1. until user clicks checkout, manager cart via redis.
-2. Increasing availability and response time of external facing application server
-    1. offloading work to background workers via mq
-        1. on new user signup - sending email can be done asyncronously
-        2. image processing on upload to website - 
-        3 server response is somewhat the image has been uploaded successfully, it will appear on the website later if things go as planned
-4. idempotent key based api design to avoid duplicate charges
- 
-## Database
+## Challenge5: Handling DB side consistency and performance challenges
+## Solution: Advisory locks instead of row level locks or select for update no wait
 1. row level lock for inventory update: lot of contention in case of million req/sec
-2. select for update no wait
-    1. customer waiting time can be reduced using sql no wait where customer req thread does not wait for db level lock but user exp. still be bad as we will have to tell him to try again later
-2. first level advisory lock with second level row lock 
+2. select for update no wait - customer waiting time can be reduced using sql no wait where customer req thread does not wait for db level lock but user exp. still be bad as we will have to tell him to try again later
+3. first level advisory lock with second level row lock 
     1. user enforced db level lock does not need to lock row/table in db. its object is an integer - lightweight & highly performant as does not need to db row or table level data
     2. use db entity PK/ID field for adivosry lock key
     3. QPS of single advisory lock in handling concurrent update requests for one record can reach 391,000/s
@@ -110,15 +88,19 @@ limited qty available for sale during a short span of time
     5. the state of product will be changed to sold out quickly, avoiding a waste of database resources.
     6. advisory lock reduces cpu utilisation drastically
 
-## Architecture
-1. overprovision infra dedicated to sales
-2. store data in binary format like avro or protobuf for memory gains
-3. read replicas versus cache
-     1. read replica will be size constrained as each read replica will store complete data
-     2. cache will be faster and size can be tuned/managed via TTL 
-
-## UI
-1. load balancer with auto scale UI service
+## Other Architecture Choices
+1. Cache api responses which r mostly static like item description
+2. until user clicks checkout, manager cart via redis.
+3. Increasing availability and response time of external facing application server
+    1. offloading work to background workers via mq
+    2. on new user signup - sending email can be done asyncronously
+    3. image processing on upload to website - server response is somewhat the image has been uploaded successfully, it will appear on the website later if things go as planned
+4. idempotent key based api design to avoid duplicate charges
+5. overprovision infra dedicated to sales
+6. store data in binary format like avro or protobuf for memory gains
+ 
+## UI side tradeoffs
+1. load balancer with auto scale suppoort of UI artifacts
 2. CDN hosting of static assets
 3. avoided repeated click by user: disable submit btn once clicked
 4. avoid unnecessary multiple api calls
