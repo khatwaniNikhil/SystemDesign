@@ -1,13 +1,54 @@
+# References
+https://bytebytego.com/courses/system-design-interview/design-a-chat-system
+
 # Requirements
 ## Functional
-1. create a new chat room with max capacity of people
-  1.1 consider allowed capacity of no. of chat rooms before accepting new chat room request, startup config: chat rooms capacity, single chat room max people capacity	
+1. 1:1 chat and/or group chat
+2. platforms supported: web, mobile etc.
+3. scale - 50M DAU, group chat members limit
+4. support online/offline status
+5. support sending attachments
+6. single text message size limits
+7. how long chat history storage
+8. push notifications
 
-2. validate and enter a user to a chat room
- 
-3. continous scheduled poll/trigger logic to delete chat room if no of users zero in chat room...delete chat room
+# Design
+## Statelful Chat service:
+1. to relay messages to online chat participants
+2. queue messages in case recipient is offline
+3. websockets for bidirectinal persistent connection
 
-4. storage
+## state less services
+1. Login/Auth service
+2. User profile service
+3. Chat group Mgmt. service - REST HTTP endpoints for - chat room creation/delete, add/remove/ban participants
+4. Service discovery(Zookeeper): recommend the best chat server for a client based on the criteria like geographical location, server capacity
+5. Cleanup service: continous scheduled poll/trigger logic to delete chat room if no of users zero in chat room...delete chat room
+
+## 3rd Party - Push Notification Service
+Firebase
+
+## storage
+store for User profile, settings/preferences, friends 
+Key value store for chat data.
+Facebook messenger and Discord use key-value stores. Facebook messenger uses HBase and Discord uses Cassandra/. 
+
+## Data Model
+1. Message table for 1 on 1 chat
+   1. msg_id
+   2. user_id_from
+   3. user_id_to
+   4. text
+   5. create_timestamp
+2. Message table for group chat
+   1. group_chat_id
+   2. user_id
+   3. msg_id
+   4. text
+   5. create_timestamp
+3. Msg_id Generator: local unique id generator per chat group(easier to maintain and sufficient for our use case) PREFFERED instead of auto increment or twitter snowfloke. 
+   
+   
    user chat room enter, banned, exit lifecyle events capture
    user chat room-chats history
 
@@ -22,8 +63,6 @@
 4. analytics readiness in terms of data capturing
 5. persistence - chats and users
 
-
-multiplexing at backend to resue existing connections
 
 chat room as a stateful entity 
 		state
