@@ -23,6 +23,9 @@ https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/
 #### 8. Polling vs LongPolling vs Websockets
 https://blog.bitsrc.io/choosing-between-long-polling-vs-websockets-for-server-updates-82b11f64bfbf
 
+#### 9. Globally_unique_ids_strategy_in_distributed_systems
+https://github.com/khatwaniNikhil/SystemDesign/blob/main/globally_unique_ids_strategy_in_distributed_systems.md
+
 # OOAD
 #### 1. design-patterns
 https://github.com/khatwaniNikhil/awesome-design-patterns
