@@ -1,4 +1,11 @@
-# Approach 1  - Using AutoIncrement Id via multi master db nodes
+# Desired characteristics
+1. Unique
+2. Sortable
+3. High ID generation  throughput - 10K id's per sec
+4. Numerica
+5. 64 bit storage 
+
+# Approach 1  - Using AutoIncrement Id via multi master db replication
 1. With K db nodes, each generate auto increment id's with offset of K across two id's generated on same node. 
 ## references
 1. https://www.pythian.com/blog/case-auto-increment-mysql
