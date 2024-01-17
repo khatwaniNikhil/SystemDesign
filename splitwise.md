@@ -93,6 +93,7 @@ TODO needs to be updated as per Attempt4 data model
 
 
 # JSON based Application level Class Design
+```java
 public enum ExpenseType {
     EQUAL, PERCENT, FIXED    
 }
@@ -127,3 +128,4 @@ public class EqualExpense extends AbstractExpense  {
 public class PercentExpense extends AbstractExpense {
     ...
 }
+```
