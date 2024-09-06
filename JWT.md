@@ -9,6 +9,7 @@ session token(opaque, random string) is returned to client as cookie which is ex
 ## Drawbacks
 1. session data lookup from db for every http request does not scale well in high loads.
 2. sticky sessions also won't be scalable
+3. centralised storage of token need to scale to serve the needs of horizontal scalable backend cluster
 
 # JWT
 1. eliminates db calls for session data lookup altogether
